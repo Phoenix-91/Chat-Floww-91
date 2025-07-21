@@ -1,0 +1,436 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+    --chart-1: 0 0% 9%;
+    --chart-2: 0 0% 20%;
+    --chart-3: 0 0% 30%;
+    --chart-4: 0 0% 40%;
+    --chart-5: 0 0% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 0 0% 98%;
+    --chart-2: 0 0% 80%;
+    --chart-3: 0 0% 60%;
+    --chart-4: 0 0% 40%;
+    --chart-5: 0 0% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar with monochrome theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Smooth animations */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Glass morphism effect with monochrome */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient text with monochrome */
+.gradient-text {
+  background: linear-gradient(135deg, #000000 0%, #404040 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Monochrome background effect */
+.mono-bg {
+  background: radial-gradient(circle at 20% 50%, rgba(0, 0, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(0, 0, 0, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+}
+
+.dark .mono-bg {
+  background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+}
+
+/* Custom animations */
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-enter {
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+/* Typing indicator animation with monochrome dots */
+@keyframes typingDot {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10px);
+  }
+}
+
+.typing-dot {
+  animation: typingDot 1.4s infinite ease-in-out;
+  background-color: #666666;
+}
+
+.dark .typing-dot {
+  background-color: #cccccc;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+/* Voice message waveform with monochrome bars */
+@keyframes waveform {
+  0%,
+  100% {
+    height: 4px;
+  }
+  50% {
+    height: 16px;
+  }
+}
+
+.waveform-bar {
+  animation: waveform 1s infinite ease-in-out;
+  background-color: #666666;
+}
+
+.dark .waveform-bar {
+  background-color: #cccccc;
+}
+
+.waveform-bar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.waveform-bar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.waveform-bar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.waveform-bar:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+/* Reaction animations */
+@keyframes reactionPop {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.reaction-pop {
+  animation: reactionPop 0.3s ease-out;
+}
+
+/* Theme transition */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Loading states with monochrome shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #ffffff 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .shimmer {
+  background: linear-gradient(90deg, #1a1a1a 25%, #ffffff 50%, #1a1a1a 75%);
+  background-size: 200px 100%;
+}
+
+/* Parallax effects */
+.parallax-element {
+  will-change: transform;
+}
+
+/* Hover effects with monochrome glow */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+}
+
+/* Focus states with monochrome ring */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-mono-black-500 focus:ring-offset-2 focus:ring-offset-mono-white-50;
+}
+
+.dark .focus-ring {
+  @apply focus:ring-mono-white-500 focus:ring-offset-mono-black-950;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .mobile-optimized {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .high-contrast {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom utilities */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark .text-shadow {
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.backdrop-blur-strong {
+  backdrop-filter: blur(20px);
+}
+
+.gradient-border {
+  border: 1px solid transparent;
+  background: linear-gradient(white, white) padding-box, linear-gradient(45deg, #000000, #404040) border-box;
+}
+
+.dark .gradient-border {
+  background: linear-gradient(black, black) padding-box, linear-gradient(45deg, #ffffff, #a0a0a0) border-box;
+}
+
+/* Message status indicators with monochrome theme */
+.message-status {
+  @apply inline-flex items-center justify-center w-4 h-4 text-xs;
+}
+
+.status-sending {
+  @apply text-gray-400;
+}
+
+.status-sent {
+  @apply text-gray-400;
+}
+
+.status-delivered {
+  @apply text-gray-400;
+}
+
+.status-read {
+  @apply text-mono-black-600;
+}
+
+.dark .status-read {
+  @apply text-mono-white-400;
+}
+
+/* Chat bubble styles with monochrome theme */
+.chat-bubble {
+  @apply relative max-w-xs lg:max-w-md px-4 py-2 rounded-2xl;
+}
+
+.chat-bubble-me {
+  @apply bg-gradient-to-r from-mono-black-800 to-mono-black-700 text-white ml-auto;
+}
+
+.dark .chat-bubble-me {
+  @apply bg-gradient-to-r from-mono-white-200 to-mono-white-100 text-black;
+}
+
+.chat-bubble-other {
+  @apply bg-mono-white-100 text-mono-black-900 border border-mono-black-200;
+}
+
+.dark .chat-bubble-other {
+  @apply bg-mono-black-800 text-mono-white-100 border border-mono-white-200;
+}
+
+.chat-bubble::before {
+  content: "";
+  @apply absolute w-0 h-0;
+}
+
+.chat-bubble-me::before {
+  @apply border-l-8 border-l-transparent border-t-8 border-t-mono-black-800 right-0 top-full;
+}
+
+.dark .chat-bubble-me::before {
+  @apply border-t-mono-white-200;
+}
+
+.chat-bubble-other::before {
+  @apply border-r-8 border-r-transparent border-t-8 border-t-mono-white-100 left-0 top-full;
+}
+
+.dark .chat-bubble-other::before {
+  @apply border-t-mono-black-800;
+}
+
+/* Monochrome glow effect */
+.mono-glow {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark .mono-glow {
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.mono-text {
+  color: #000000;
+}
+
+.dark .mono-text {
+  color: #ffffff;
+}
